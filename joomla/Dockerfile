@@ -1,0 +1,1 @@
+FROM joomla:latest

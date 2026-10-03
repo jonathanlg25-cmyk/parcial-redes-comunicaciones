@@ -1,0 +1,40 @@
+{
+  "annotations": {"list": []},
+  "editable": false,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {"type": "postgres", "uid": "joomla-postgres"},
+      "fieldConfig": {"defaults": {"unit": "short", "min": 0}, "overrides": []},
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "id": 1,
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single"}},
+      "targets": [{"datasource": {"type": "postgres", "uid": "joomla-postgres"}, "format": "table", "rawQuery": true, "rawSql": "SELECT 'Conexiones activas' AS metric, numbackends::double precision AS value FROM pg_stat_database WHERE datname = current_database() UNION ALL SELECT 'Transacciones confirmadas' AS metric, xact_commit::double precision AS value FROM pg_stat_database WHERE datname = current_database() UNION ALL SELECT 'Transacciones revertidas' AS metric, xact_rollback::double precision AS value FROM pg_stat_database WHERE datname = current_database();", "refId": "A"}],
+      "title": "Conexiones y transacciones de PostgreSQL",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {"type": "postgres", "uid": "joomla-postgres"},
+      "fieldConfig": {"defaults": {"unit": "bytes", "min": 0}, "overrides": []},
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "id": 2,
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single"}},
+      "targets": [{"datasource": {"type": "postgres", "uid": "joomla-postgres"}, "format": "table", "rawQuery": true, "rawSql": "SELECT 'Tamaño de la base (bytes)' AS metric, pg_database_size(current_database())::double precision AS value;", "refId": "A"}],
+      "title": "Tamaño de la base de datos",
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["joomla", "postgresql", "comm"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Actividad de Joomla y PostgreSQL",
+  "uid": "joomla-actividad",
+  "version": 1
+}

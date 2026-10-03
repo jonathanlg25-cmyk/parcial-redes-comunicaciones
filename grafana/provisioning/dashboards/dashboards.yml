@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: Parcial COMM
+    orgId: 1
+    folder: Comunicaciones
+    type: file
+    disableDeletion: true
+    editable: false
+    options:
+      path: /etc/grafana/provisioning/dashboards/json
